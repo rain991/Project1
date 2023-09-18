@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.ezylang.evalex.Expression
+import kotlin.math.exp
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,63 +31,70 @@ class MainActivity : AppCompatActivity() {
 
         val resultTextView = findViewById<TextView>(R.id.result_TextView)
         val numberStringBuilder = StringBuilder()
-        zeroButton.setOnClickListener{
-        numberStringBuilder.append(0)
+        zeroButton.setOnClickListener {
+            numberStringBuilder.append(0)
             resultTextView.text = numberStringBuilder
         }
-        oneButton.setOnClickListener{
+        oneButton.setOnClickListener {
             numberStringBuilder.append(1)
             resultTextView.text = numberStringBuilder
         }
-        twoButton.setOnClickListener{
+        twoButton.setOnClickListener {
             numberStringBuilder.append(2)
             resultTextView.text = numberStringBuilder
         }
-        threeButton.setOnClickListener{
+        threeButton.setOnClickListener {
             numberStringBuilder.append(3)
             resultTextView.text = numberStringBuilder
         }
-        fourButton.setOnClickListener{
+        fourButton.setOnClickListener {
             numberStringBuilder.append(4)
             resultTextView.text = numberStringBuilder
         }
-        fiveButton.setOnClickListener{
+        fiveButton.setOnClickListener {
             numberStringBuilder.append(5)
             resultTextView.text = numberStringBuilder
         }
-        sixButton.setOnClickListener{
+        sixButton.setOnClickListener {
             numberStringBuilder.append(6)
             resultTextView.text = numberStringBuilder
         }
-        sevenButton.setOnClickListener{
+        sevenButton.setOnClickListener {
             numberStringBuilder.append(7)
             resultTextView.text = numberStringBuilder
         }
-        eightButton.setOnClickListener{
+        eightButton.setOnClickListener {
             numberStringBuilder.append(8)
             resultTextView.text = numberStringBuilder
         }
-        nineButton.setOnClickListener{
+        nineButton.setOnClickListener {
             numberStringBuilder.append(9)
             resultTextView.text = numberStringBuilder
         }
-        plusButton.setOnClickListener{
+        plusButton.setOnClickListener {
             numberStringBuilder.append("+")
             resultTextView.text = numberStringBuilder
         }
-        minusButton.setOnClickListener{
+        minusButton.setOnClickListener {
             numberStringBuilder.append("-")
             resultTextView.text = numberStringBuilder
         }
-        multiplyButton.setOnClickListener{
+        multiplyButton.setOnClickListener {
             numberStringBuilder.append("*")
             resultTextView.text = numberStringBuilder
         }
-        pointButton.setOnClickListener{
+        pointButton.setOnClickListener {
             numberStringBuilder.append(".")
             resultTextView.text = numberStringBuilder
         }
-
+        equalButton.setOnClickListener {
+            val stringExpresion = numberStringBuilder.toString()
+            val expression = Expression(stringExpresion)
+            val expressionResult = expression.evaluate().numberValue
+            resultTextView.text = expressionResult.toString()
+            numberStringBuilder.clear()
+            numberStringBuilder.append(expressionResult.toString())
+        }
     }
 
 }
