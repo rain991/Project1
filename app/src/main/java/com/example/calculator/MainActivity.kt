@@ -4,34 +4,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.example.calculator.databinding.ActivityMainBinding
 import com.ezylang.evalex.Expression
 import kotlin.math.exp
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private val numberStringBuilder = StringBuilder()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val zeroButton = findViewById<Button>(R.id.zero_button)
-        val oneButton = findViewById<Button>(R.id.one_button)
-        val twoButton = findViewById<Button>(R.id.two_button)
-        val threeButton = findViewById<Button>(R.id.three_button)
-        val fourButton = findViewById<Button>(R.id.four_button)
-        val fiveButton = findViewById<Button>(R.id.five_button)
-        val sixButton = findViewById<Button>(R.id.six_button)
-        val sevenButton = findViewById<Button>(R.id.seven_button)
-        val eightButton = findViewById<Button>(R.id.eight_button)
-        val nineButton = findViewById<Button>(R.id.nine_button)
-
-        val pointButton = findViewById<Button>(R.id.point_button)
-        val plusButton = findViewById<Button>(R.id.plus_button)
-        val minusButton = findViewById<Button>(R.id.minus_button)
-        val multiplyButton = findViewById<Button>(R.id.multiply_button)
-        val equalButton = findViewById<Button>(R.id.equal_button)
-        val divideButton = findViewById<Button>(R.id.divide_button)
-        val clearButton = findViewById<Button>(R.id.clear_button)
         val resultTextView = findViewById<TextView>(R.id.result_TextView)
-        val numberStringBuilder = StringBuilder()
+        setListeners()
+
+    }
+
+    private fun setListeners() = with(binding) {
         zeroButton.setOnClickListener {
             numberStringBuilder.append(0)
             resultTextView.text = numberStringBuilder
@@ -89,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.append(".")
             resultTextView.text = numberStringBuilder
         }
-        divideButton.setOnClickListener{
+        divideButton.setOnClickListener {
             numberStringBuilder.append("/")
             resultTextView.text = numberStringBuilder
         }
@@ -101,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.clear()
             numberStringBuilder.append(expressionResult.toString())
         }
-        clearButton.setOnClickListener{
+        clearButton.setOnClickListener {
             numberStringBuilder.clear()
             resultTextView.text = "0"
         }
