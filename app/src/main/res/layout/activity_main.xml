@@ -134,5 +134,12 @@
         android:id="@+id/clear_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
+    <Button
+        app:layout_constraintBottom_toTopOf="@id/seven_button"
+        app:layout_constraintRight_toLeftOf="@id/clear_button"
+        android:text="History"
+        android:id="@+id/history_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

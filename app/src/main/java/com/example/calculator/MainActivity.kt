@@ -1,5 +1,6 @@
 package com.example.calculator
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -11,6 +12,7 @@ import kotlin.math.exp
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val numberStringBuilder = StringBuilder()
+    private val historyList = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -96,6 +98,15 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.clear()
             resultTextView.text = "0"
         }
+        historyButton.setOnClickListener {
+            val intent = Intent(this@MainActivity, HistoryActivity::class.java)
+            intent.putExtra("history_list", historyList.toTypedArray())
+            startActivity(intent)
+        }
     }
 
+    private fun saveToHistory() {
+        val stringExpresion = numberStringBuilder.toString()
+        historyList.add(stringExpresion)
+    }
 }
